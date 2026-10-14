@@ -4,6 +4,8 @@ const messages = document.getElementById('messages');
 const sendButton = document.getElementById('sendButton');
 const installButton = document.getElementById('installButton');
 
+const conversationHistory = [];
+
 function addMessage(text, who) {
   const article = document.createElement('article');
   article.className = `message ${who === 'user' ? 'user-message' : 'machine-message'}`;
@@ -15,16 +17,48 @@ function addMessage(text, who) {
   article.append(label, body);
   messages.appendChild(article);
   article.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  return body;
 }
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const value = input.value.trim();
-  if (!value) return;
+  if (!value || sendButton.disabled) return;
+
   addMessage(value, 'user');
-  addMessage('Esta interface já recebeu a tua mensagem, mas ainda não está ligada ao modelo de inteligência artificial. A próxima etapa é configurar essa ligação de forma segura, sem colocar chaves privadas no navegador.', 'machine');
+  conversationHistory.push({ role: 'user', content: value });
   input.value = '';
   input.focus();
+  sendButton.disabled = true;
+  const pending = addMessage('A refletir…', 'machine');
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: value,
+        history: conversationHistory.slice(0, -1)
+      })
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || `O servidor respondeu com o erro ${response.status}.`);
+    }
+    if (typeof data.reply !== 'string' || !data.reply.trim()) {
+      throw new Error('O servidor não devolveu uma resposta válida.');
+    }
+
+    pending.textContent = data.reply;
+    conversationHistory.push({ role: 'assistant', content: data.reply });
+  } catch (error) {
+    pending.textContent = `Não consegui obter uma resposta da IA. ${error.message} Se estiveres a usar a página do GitHub Pages, abre a versão do LUMENOR alojada no Vercel.`;
+    conversationHistory.pop();
+  } finally {
+    sendButton.disabled = false;
+    input.focus();
+  }
 });
 
 input.addEventListener('keydown', (event) => {
