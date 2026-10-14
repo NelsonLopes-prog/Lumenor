@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+:root{color-scheme:dark;--bg:#09070d;--panel:#100d16;--line:rgba(202,157,255,.22);--gold:#e8bb73;--violet:#b78ae8;--text:#f2ede8;--muted:#b4a9ba}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#24132c 0%,var(--bg) 55%);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+.app-shell{width:min(1180px,100%);margin:0 auto;padding:0 20px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;gap:12px;padding:20px 0 16px;border-bottom:1px solid var(--line)}
+.brand-mark{font-size:26px;color:var(--gold);text-shadow:0 0 18px #a75eff}
+.brand-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:25px;letter-spacing:.28em;color:var(--gold)}
+.brand-subtitle{font-size:9px;letter-spacing:.22em;color:var(--muted);margin-top:3px}
+.install-button{margin-left:auto;border:1px solid var(--line);background:#1b1424;color:var(--gold);border-radius:999px;padding:9px 14px;font-weight:600}
+.presence{position:relative;margin:20px 0 22px;border:1px solid rgba(232,187,115,.3);border-radius:14px;overflow:hidden;background:#08060b;box-shadow:0 12px 40px #0008}
+.portrait{display:block;width:100%;height:clamp(190px,36vw,400px);object-fit:cover;object-position:center 42%}
+.presence:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(8,5,12,.78));pointer-events:none}
+.presence-caption{position:absolute;bottom:14px;left:17px;z-index:1;display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.2em;color:#f1d9b3}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#cba0f5;box-shadow:0 0 12px #b78ae8}
+.conversation{width:min(820px,100%);margin:0 auto;flex:1;display:flex;flex-direction:column}
+.conversation-heading{text-align:center;margin:0 0 20px}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(29px,4vw,42px);font-weight:400;margin:0 0 5px;color:#f2d5a4}
+.conversation-heading p{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--muted);margin:0;font-size:18px}
+.messages{display:flex;flex-direction:column;gap:14px;padding:8px 0 18px}
+.message{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:rgba(18,13,25,.88);line-height:1.65;overflow-wrap:anywhere}
+.message p{margin:6px 0 0;white-space:pre-wrap}
+.message-label{font-size:9px;letter-spacing:.18em;color:var(--gold)}
+.user-message{margin-left:auto;max-width:90%;background:rgba(39,23,49,.92);border-color:rgba(183,138,232,.4)}
+.composer{display:flex;align-items:flex-end;gap:10px;padding:10px;border:1px solid rgba(232,187,115,.35);background:#100c15;border-radius:14px;margin-bottom:10px}
+textarea{flex:1;resize:vertical;min-height:42px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;line-height:1.5;padding:10px}
+textarea::placeholder{color:#988b9e}
+#sendButton{width:42px;height:42px;border-radius:11px;border:0;background:linear-gradient(135deg,#e8bb73,#b78ae8);color:#140b18;font-size:26px;cursor:pointer}
+#sendButton:disabled{opacity:.45;cursor:default}
+.prototype-note{font-size:11px;line-height:1.5;color:#93869a;text-align:center;margin:0 0 22px}
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:18px 0 22px;border-top:1px solid var(--line);font-size:9px;letter-spacing:.12em;color:#8f8198}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:900px){.app-shell{padding:0 32px}.presence{margin-top:24px}.portrait{object-position:center 39%}.conversation{padding-bottom:10px}}
+@media(max-width:520px){.app-shell{padding:0 13px}.topbar{padding-top:15px}.brand-name{font-size:22px}.brand-subtitle{font-size:7px}.portrait{height:220px;object-position:42% center}.footer{font-size:8px}.message{padding:13px}}

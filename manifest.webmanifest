@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "LUMENOR — Laboratório de Diálogo",
+  "short_name": "LUMENOR",
+  "description": "Laboratório privado de investigação e diálogo.",
+  "lang": "pt-PT",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#09070d",
+  "theme_color": "#09070d",
+  "icons": [
+    {"src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

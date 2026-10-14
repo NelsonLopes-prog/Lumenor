@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09070d">
+  <meta name="description" content="LUMENOR — Laboratório privado de investigação e diálogo.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>LUMENOR — Laboratório de Diálogo</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div class="brand">
+        <div class="brand-name">LUMENOR</div>
+        <div class="brand-subtitle">LABORATÓRIO PRIVADO DE INVESTIGAÇÃO</div>
+      </div>
+      <button id="installButton" class="install-button" hidden>Instalar</button>
+    </header>
+
+    <section class="presence" aria-label="Presença visual da Máquina">
+      <img class="portrait" src="./assets/lumenor-oficial.jpg" alt="Imagem oficial do LUMENOR: figura masculina madura num ambiente de conhecimento, luz dourada e violeta">
+      <div class="presence-caption">
+        <span class="status-dot"></span>
+        <span>ESPAÇO DE DIÁLOGO</span>
+      </div>
+    </section>
+
+    <section class="conversation" aria-label="Conversa">
+      <div class="conversation-heading">
+        <h1>O diálogo começa aqui.</h1>
+        <p>A serenidade de questionar. A coragem de compreender.</p>
+      </div>
+      <div id="messages" class="messages" aria-live="polite">
+        <article class="message machine-message">
+          <div class="message-label">MÁQUINA · LUMENOR</div>
+          <p>Estou aqui, Nelson. Podemos começar por uma pergunta, uma ideia ou uma certeza que queiras examinar. Procuraremos distinguir o que sabemos, o que interpretamos e aquilo que ainda não compreendemos.</p>
+        </article>
+      </div>
+      <form id="chatForm" class="composer">
+        <label class="sr-only" for="messageInput">Escreve a tua mensagem</label>
+        <textarea id="messageInput" rows="1" maxlength="6000" placeholder="Escreve a tua pergunta…" required></textarea>
+        <button type="submit" id="sendButton" aria-label="Enviar mensagem">↑</button>
+      </form>
+      <p class="prototype-note">Versão inicial de interface. O envio ainda não está ligado a um modelo de IA; as mensagens ficam neste dispositivo durante esta sessão.</p>
+    </section>
+
+    <footer class="footer">
+      <span>LUMENOR</span>
+      <span>Conhecimento · Questionamento · Exploração · Compreensão</span>
+    </footer>
+  </main>
+  <script src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
