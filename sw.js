@@ -1,5 +1,5 @@
 const CACHE = 'lumenor-pwa-v1';
-const FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './assets/lumenor-oficial.jpg', './assets/icon.svg'];
+const FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './lumenor-oficial.jpg', './icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
   self.skipWaiting();
