@@ -11,6 +11,6 @@
   "background_color": "#09070d",
   "theme_color": "#09070d",
   "icons": [
-    {"src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
   ]
 }
